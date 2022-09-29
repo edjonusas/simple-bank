@@ -36,4 +36,5 @@ WHERE id = sqlc.arg(id)
 RETURNING *;
 
 -- name: DeleteAccount :exec
-DELETE FROM accounts WHERE id = $1;
+DELETE FROM accounts 
+WHERE id = $1;

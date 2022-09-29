@@ -65,7 +65,8 @@ func (q *Queries) CreateAccount(ctx context.Context, arg CreateAccountParams) (A
 }
 
 const deleteAccount = `-- name: DeleteAccount :exec
-DELETE FROM accounts WHERE id = $1
+DELETE FROM accounts 
+WHERE id = $1
 `
 
 func (q *Queries) DeleteAccount(ctx context.Context, id int64) error {
@@ -128,7 +129,7 @@ func (q *Queries) ListAccounts(ctx context.Context, arg ListAccountsParams) ([]A
 		return nil, err
 	}
 	defer rows.Close()
-	var items []Account
+	items := []Account{}
 	for rows.Next() {
 		var i Account
 		if err := rows.Scan(
